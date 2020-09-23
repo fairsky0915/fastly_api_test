@@ -1,3 +1,1 @@
-It's me!
-# fastly_api_test
-# fastly_api_test
+This repository is to test for my code to improve for program skill.
