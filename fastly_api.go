@@ -28,19 +28,18 @@ func main() {
 
 	shortURL = "https://api.fastly.com/service/"
 	APIURLStr = fmt.Sprintf("%s%s/version", shortURL, serviceID)
-	fmt.Println("APIURLStr", APIURLStr)
 
 	switch taskSelect {
 	case 1:
 		req, err := http.NewRequest("POST", APIURLStr, nil)
 		if err != nil {
-			// handle err
+			log.Fatal(err)
 		}
 		req.Header.Set("Fastly-Key", tokenID)
 		req.Header.Set("Accept", "application/json")
 		resp, err := http.DefaultClient.Do(req)
 		if err != nil {
-			// handle err
+			log.Fatal(err)
 		}
 		defer resp.Body.Close()
 
@@ -59,14 +58,14 @@ func main() {
 		CloneURL = fmt.Sprintf("%s/%d/clone", APIURLStr, Version)
 		req, err := http.NewRequest("PUT", CloneURL, nil)
 		if err != nil {
-			// handle err
+			log.Fatal(err)
 		}
 		req.Header.Set("Fastly-Key", tokenID)
 		req.Header.Set("Accept", "application/json")
 
 		resp, err := http.DefaultClient.Do(req)
 		if err != nil {
-			// handle err
+			log.Fatal(err)
 		}
 		defer resp.Body.Close()
 
@@ -85,14 +84,14 @@ func main() {
 		ActivateURL = fmt.Sprintf("%s/%d/activate", APIURLStr, Version)
 		req, err := http.NewRequest("PUT", ActivateURL, nil)
 		if err != nil {
-			// handle err
+			log.Fatal(err)
 		}
 		req.Header.Set("Fastly-Key", tokenID)
 		req.Header.Set("Accept", "application/json")
 
 		resp, err := http.DefaultClient.Do(req)
 		if err != nil {
-			// handle err
+			log.Fatal(err)
 		}
 		defer resp.Body.Close()
 
@@ -106,6 +105,4 @@ func main() {
 		//reponse status
 		fmt.Println(string(resp.Status))
 	}
-	fmt.Println(CloneURL)
-	fmt.Println(ActivateURL)
 }
